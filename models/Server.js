@@ -6,7 +6,8 @@ class Server{
 
     constructor(){
         this.app = express();
-        this.port = process.env.PORT;
+        this.port = process.env.PORT || 5000;
+        this.server_host = '0.0.0.0';
         this.usuariosPath='/api/usuarios';
         //middlewares
         this.middlewares();
@@ -36,7 +37,7 @@ class Server{
     }
 
     listen(){
-        this.app.listen(this.port, () => {
+        this.app.listen(this.port, this.server_host, () => {
             console.log(`Example app listening at http://localhost:${this.port}`)
           });
           
